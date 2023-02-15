@@ -8,3 +8,15 @@
 apply plugin: 'java'
 apply plugin: 'application'
 mainClassName = "FirstCode"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.7.1'
+}
+
+test {
+    useJUnitPlatform()
+}
