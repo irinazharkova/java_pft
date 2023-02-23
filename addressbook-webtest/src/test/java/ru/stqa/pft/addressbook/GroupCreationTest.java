@@ -33,7 +33,6 @@ public class GroupCreationTest {
     fillGroupForm(new GroupData("test_name", "test_header", "test_footer"));
     submitGroupCreation();
     returnGroupPage();
-    wd.findElement(By.linkText("Logout")).click();
   }
 
   private void returnGroupPage() {
