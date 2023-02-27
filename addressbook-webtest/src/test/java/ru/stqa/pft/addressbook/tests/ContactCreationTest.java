@@ -10,5 +10,6 @@ public class ContactCreationTest extends TestBase {
     app.getNavigationHelper().goToContactCreationPage();
     app.getContactHelper().fillContactForm(new ContactData("test", "middle", "last", "nick", "title", "address", "9999999", "99999", "test@test.ru"));
     app.getContactHelper().submitContactCreation();
+    app.getNavigationHelper().goToHomePage();
   }
 }
