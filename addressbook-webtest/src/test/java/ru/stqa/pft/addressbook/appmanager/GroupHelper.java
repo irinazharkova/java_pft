@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 public class GroupHelper {
-  FirefoxDriver wd;
+  private FirefoxDriver wd;
 
   public GroupHelper(FirefoxDriver wd) {
     this.wd = wd;
@@ -33,9 +33,8 @@ public class GroupHelper {
     wd.findElement(By.name("new")).click();
   }
 
-  public void goToGroupPage() {
-
-    wd.findElement(By.linkText("groups")).click();
+  public void returnGroupPage() {
+    wd.findElement(By.linkText("group page")).click();
   }
 
   public void deleteSelectedGroup() {
