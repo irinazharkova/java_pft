@@ -12,17 +12,9 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
   //public WebDriver wd;
   FirefoxDriver wd;
+  private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
-
-  public static void login(WebDriver wd, String username, String password) {
-    wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(username);
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
-  }
 
   public void init() {
     wd = new FirefoxDriver();
@@ -30,7 +22,8 @@ public class ApplicationManager {
     wd.get("http://localhost/addressbook/index.php");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
-    ApplicationManager.login(wd, "admin", "secret");
+    sessionHelper = new SessionHelper(wd);
+    sessionHelper.login("admin", "secret");
   }
 
   public void stop() {
@@ -42,15 +35,6 @@ public class ApplicationManager {
       wd.findElement(by);
       return true;
     } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
-
-  public boolean isAlertPresent() {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
       return false;
     }
   }
