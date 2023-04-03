@@ -6,7 +6,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+
 public class ContactHelper extends HelperBase {
+
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -23,8 +25,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void pencilClick() {
-
-    click(By.xpath("//img[@alt='Edit']"));
+    click(By.cssSelector("img[alt=\"Edit\"]"));
   }
 
   public void submitDeletionInEditForm() {
@@ -65,5 +66,18 @@ public class ContactHelper extends HelperBase {
 
   public void closeAlertPopup() {
     wd.switchTo().alert().accept();
+  }
+
+  public void goToContactCreationPage() { click(By.linkText("add new"));
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+  public void createContact(ContactData contact) {
+    goToContactCreationPage();
+    fillContactForm(contact, true);
+    submitContactCreation();
   }
 }
